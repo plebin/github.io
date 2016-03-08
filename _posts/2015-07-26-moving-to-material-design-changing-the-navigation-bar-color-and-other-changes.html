@@ -1,0 +1,37 @@
+---
+layout: post
+title: 'Moving to Material Design: Changing the Navigation Bar Color and Other Changes'
+date: 2015-07-26 18:58:10.000000000 +05:30
+type: post
+published: true
+status: publish
+categories: []
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '13110828841'
+author:
+  login: muqtaliff
+  email: muqtaliff@gmail.com
+  display_name: muqtaliff
+  first_name: ''
+  last_name: ''
+---
+<p>I decided to change the navigation bar color to make it blend with the rest of the application. Instead of the default black, I have given it a shade of gray. The status bar can also be themed in a similar way to give your application a unique look and branding.</p>
+<pre>this.getWindow().setNavigationBarColor(Color.parseColor("#D0D0D0"));</pre>
+<p>Main screen with the default navigation bar (left) and with the themed navigation bar (right)</p>
+<p><a href="https://plebin.files.wordpress.com/2015/07/main-after.png"><img class="alignnone size-medium wp-image-47" src="{{ site.baseurl }}/assets/main-after.png?w=180" alt="Main-after" width="180" height="300" /></a>     <a href="https://plebin.files.wordpress.com/2015/07/main-screen-with-navbar-colored.png"><img class="alignnone size-medium wp-image-70" src="{{ site.baseurl }}/assets/main-screen-with-navbar-colored.png?w=180" alt="main screen with navbar colored" width="180" height="300" /></a></p>
+<p>I also decided to update other parts of the application that were not really related to Material Design. The annoying and archaic style validation of fields using dialog boxes was replaced with a more subtle text field red underline and an error hint.</p>
+<pre>   if(thing.trim().length()&lt;=0 &amp;&amp; !saveState)
+   {
+      thingField.setHighlightColor(android.graphics.Color.RED);
+      thingField.setError("Thing name is mandatory");
+      thingField.requestFocus();
+      return null;
+   }</pre>
+<p>The screen with the dialog on left and with the new text field error on the right.</p>
+<p><a href="https://plebin.files.wordpress.com/2015/07/screenshot_2015-07-15-17-50-391.png"><img class="alignnone size-medium wp-image-63" src="{{ site.baseurl }}/assets/screenshot_2015-07-15-17-50-391.png?w=180" alt="Thing name check old" width="180" height="300" /></a>      <a href="https://plebin.files.wordpress.com/2015/07/screenshot_2015-07-26-13-09-421.png"><img class="alignnone size-medium wp-image-64" src="{{ site.baseurl }}/assets/screenshot_2015-07-26-13-09-421.png?w=180" alt="Thing name check textfield" width="180" height="300" /></a></p>
+<p><a href="https://plebin.files.wordpress.com/2015/07/screenshot_2015-07-15-17-50-201.png"><img class="alignnone size-medium wp-image-62" src="{{ site.baseurl }}/assets/screenshot_2015-07-15-17-50-201.png?w=180" alt="Price check old" width="180" height="300" /></a>     <a href="https://plebin.files.wordpress.com/2015/07/screenshot_2015-07-26-13-09-561.png"><img class="alignnone size-medium wp-image-65" src="{{ site.baseurl }}/assets/screenshot_2015-07-26-13-09-561.png?w=180" alt="Price check textfield" width="180" height="300" /></a></p>
+<p>I also added a thumbnail to the add/edit page to show the pic selected or clicked.</p>
+<p><a href="https://plebin.files.wordpress.com/2015/07/add-after1.png"><img class="alignnone size-medium wp-image-44" src="{{ site.baseurl }}/assets/add-after1.png?w=180" alt="Add-After" width="180" height="300" /></a>     <a href="https://plebin.files.wordpress.com/2015/07/screenshot_2015-07-26-13-11-141.png"><img class="alignnone size-medium wp-image-66" src="{{ site.baseurl }}/assets/screenshot_2015-07-26-13-11-141.png?w=180" alt="Add Screen Thumbnail" width="180" height="300" /></a></p>

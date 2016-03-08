@@ -1,0 +1,41 @@
+---
+layout: post
+title: Grid View, Font Changes and a New Icon!
+date: 2015-08-30 12:44:53.000000000 +05:30
+type: post
+published: true
+status: publish
+categories:
+- android
+tags:
+- android
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '14247722477'
+author:
+  login: muqtaliff
+  email: muqtaliff@gmail.com
+  display_name: muqtaliff
+  first_name: ''
+  last_name: ''
+---
+<p>The app received its biggest change so far with the main screen now displaying images in a grid instead of a list. I was planning to write the grid using the default components when I came across etsy's <a href="https://github.com/etsy/AndroidStaggeredGrid/" target="_blank">AndroidStaggeredGrid</a>. A simple and minimal grid with options to control the number of columns, margins and padding. The reason why I chose this over other custom controls was that it had minimal impact on my existing code. The AndroidStaggeredGrid control extended from AbsListView so most of the code that I had written could be reused.</p>
+<pre>StaggeredGridView thingsList = (StaggeredGridView)findViewById(R.id.grid_view);</pre>
+<pre>thingsList.setAdapter(listAdapter);
+thingsList.setOnItemClickListener(this);</pre>
+<p>As I had earlier extended from ListActivity, I could get a few features out of the box: such as a default TextView to show on empty. Now, even after calling an explicit setEmptyView method, I was not able to get the desired result. So had to work around by adding a TextView on a FlowLayout that would only show when the grid was empty. But other than this the other changes (listener etc) were minimal.</p>
+<p><a href="https://plebin.files.wordpress.com/2015/08/main-grid.png" target="_blank"><img class="alignnone size-medium wp-image-88" src="{{ site.baseurl }}/assets/main-grid.png?w=180" alt="Main-grid" width="180" height="300" /></a></p>
+<p><strong>Font Changes</strong></p>
+<p>While the Roboto font is a fine one, I was getting bored of seeing it, as it is the default in almost all apps. So, decided to replace it with a sans-serif open source font.</p>
+<pre>Typeface typeface = Typeface.createFromAsset( getResources().getAssets(), "SourceSansPro-Regular.otf");
+((TextView)findViewById(R.id.datePurchValue)).setTypeface(typeface);
+((TextView)findViewById(R.id.priceValue)).setTypeface(typeface);
+((TextView)findViewById(R.id.descValue)).setTypeface(typeface);</pre>
+<p>Also, added a few icons to spruce up the view screen. The base icons are from <a href="http://www.icons4android.com" target="_blank">www.icons4android.com</a></p>
+<p><a href="https://plebin.files.wordpress.com/2015/08/view-fontchanges.png"><img class="alignnone size-medium wp-image-87" src="{{ site.baseurl }}/assets/view-fontchanges.png?w=180" alt="View-fontchanges" width="180" height="300" /></a></p>
+<p><strong>A New Launcher Icon! </strong></p>
+<p>And finally, I created a new launcher icon using using <a href="http://romannurik.github.io/AndroidAssetStudio/icons-launcher.html" target="_blank">Roman Nurik's Android Asset Studio</a>. The launcher icon is also displayed in the About screen of the app.</p>
+<p><a href="https://plebin.files.wordpress.com/2015/08/main-grid.png"><img class="alignnone size-medium wp-image-85" src="{{ site.baseurl }}/assets/about-new-icon.png?w=180" alt="About-new-icon" width="180" height="300" /></a></p>
+<p><strong>Bug Fixes</strong></p>
+<p>Along with the new enhancements, a bug related to images was fixed. The images though were stored in a directory created by Thingse, were still referring to their original location. Any delete of the original image would throw a NullPointerException and cause the app to crash. I fixed this by pointing to the right location and also hid the images directory where Thingse stores the captured/selected images from gallery apps. This was done by starting the directory name with a "." (dot) and additionally adding a "nomedia" file in the directory.</p>

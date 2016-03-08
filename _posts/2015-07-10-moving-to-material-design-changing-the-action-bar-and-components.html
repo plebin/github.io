@@ -1,0 +1,55 @@
+---
+layout: post
+title: 'Moving to Material Design: Changing the Action Bar and Components'
+date: 2015-07-10 14:38:21.000000000 +05:30
+type: post
+published: true
+status: publish
+categories:
+- android
+tags:
+- android
+- material
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '12597053051'
+  _edit_last: '69000'
+  geo_public: '0'
+author:
+  login: muqtaliff
+  email: muqtaliff@gmail.com
+  display_name: muqtaliff
+  first_name: ''
+  last_name: ''
+---
+<p>Taking cue from Google's Contacts, Gmail and other apps, I moved the main actions such as Edit, Delete and Save to the ActionBar. The buttons at the bottom of the screen were replaced with corresponding menu actions on the ActionBar or AppBar as it is now called.</p>
+<p>The Preferences in the main screen moved into the overflow menu in the ActionBar. The screen before material design was also shown in a previous <a href="https://plebin.wordpress.com/2015/07/05/moving-to-material-design-adding-a-fab-button/" target="_blank">post</a>.</p>
+<p>Main screen before (left) and after (right)</p>
+<p><a href="https://plebin.files.wordpress.com/2015/07/main-before.png"><img class="alignnone size-medium wp-image-15" src="{{ site.baseurl }}/assets/main-before.png?w=180" alt="Main-before" width="180" height="300" /></a>   <a href="https://plebin.files.wordpress.com/2015/07/main-after.png"><img class="alignnone size-medium wp-image-47" src="{{ site.baseurl }}/assets/main-after.png?w=180" alt="Main-after" width="180" height="300" /></a></p>
+<p>Preferences/settings screen before (left) and after (right)</p>
+<p><a href="https://plebin.files.wordpress.com/2015/07/settings-after.png"><img class=" size-medium wp-image-49 alignnone" src="{{ site.baseurl }}/assets/settings-before.png?w=180" alt="settings-before" width="180" height="300" /></a>   <img class=" size-medium wp-image-38 alignnone" src="{{ site.baseurl }}/assets/settings-after.png?w=180" alt="settings-after" width="180" height="300" /></p>
+<p>Add screen before (left) and after (right). Taking inspiration from the "Add Event" screen in the Google Calendar app, I did away with the static labels and just left them as hints in the corresponding text fields. The icons are also refreshed from the <a href="https://www.google.com/design/icons/" target="_blank">Material Icons 2.0 library</a>.</p>
+<p><a href="https://plebin.files.wordpress.com/2015/07/add-before.png"><img class="alignnone size-medium wp-image-31" src="{{ site.baseurl }}/assets/add-before.png?w=180" alt="Add-before" width="180" height="300" /></a>   <a href="https://plebin.files.wordpress.com/2015/07/add-after1.png"><img class="alignnone size-medium wp-image-44" src="{{ site.baseurl }}/assets/add-after1.png?w=180" alt="Add-After" width="180" height="300" /></a></p>
+<p>The Edit screen looks similar to the Add screen but comes with the values pre-populated. Before (left) and after (right)</p>
+<p><a href="https://plebin.files.wordpress.com/2015/07/edit-before.png"><img class="alignnone size-medium wp-image-35" src="{{ site.baseurl }}/assets/edit-before.png?w=180" alt="Edit-before" width="180" height="300" /></a>   <a href="https://plebin.files.wordpress.com/2015/07/edit-after1.png"><img class="alignnone size-medium wp-image-46" src="{{ site.baseurl }}/assets/edit-after1.png?w=180" alt="Edit-After" width="180" height="300" /></a></p>
+<p>View screen before (left) and after (right). With the title and buttons moving to the ActionBar, there is more room for the image to be displayed.</p>
+<p><a href="https://plebin.files.wordpress.com/2015/07/view-before.png"><img class="alignnone size-medium wp-image-37" src="{{ site.baseurl }}/assets/view-before.png?w=180" alt="View-before" width="180" height="300" /></a>   <a href="https://plebin.files.wordpress.com/2015/07/view-after1.png"><img class="alignnone size-medium wp-image-48" src="{{ site.baseurl }}/assets/view-after1.png?w=180" alt="View-After" width="180" height="300" /></a></p>
+<p>Date pickers before (left) and after (right)</p>
+<p><a href="https://plebin.files.wordpress.com/2015/07/date-picker-before.png"><img class="alignnone size-medium wp-image-33" src="{{ site.baseurl }}/assets/date-picker-before.png?w=180" alt="Date picker-before" width="180" height="300" /></a>   <a href="https://plebin.files.wordpress.com/2015/07/date-picker-after.png"><img class="alignnone size-medium wp-image-32" src="{{ site.baseurl }}/assets/date-picker-after.png?w=180" alt="Date picker - after" width="180" height="300" /></a></p>
+<p>From a code point of view, adding menu actions to the AppBar is not unique to Material Design; just create the Menu Items and add them to the Menu component.</p>
+<pre>//menu items for edit and delete
+@Override
+public boolean onCreateOptionsMenu(Menu menu)
+{
+
+   menu.add("Edit").setIcon(R.drawable.ic_mode_edit_black_18dp)
+         .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+   menu.add("Delete").setIcon(R.drawable.ic_delete_black_18dp)
+         .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+   return true;
+
+}</pre>
+<p>To get the changed look for ActionBar and all the other UI components, all you need to do is choose the higher max target API version and change the theme for the application to Material in the android manifest file. There is no code change required to be made to get the material look.</p>

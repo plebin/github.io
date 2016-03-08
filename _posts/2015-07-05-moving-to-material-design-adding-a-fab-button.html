@@ -1,0 +1,77 @@
+---
+layout: post
+title: 'Moving to Material Design: Adding a FAB Button'
+date: 2015-07-05 15:01:44.000000000 +05:30
+type: post
+published: true
+status: publish
+categories:
+- android
+tags:
+- android
+- fab
+- material
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '12385461188'
+  _edit_last: '69000'
+  geo_public: '0'
+author:
+  login: muqtaliff
+  email: muqtaliff@gmail.com
+  display_name: muqtaliff
+  first_name: ''
+  last_name: ''
+---
+<p>I had written a simple app called Thingse an year and a half ago to store the list of stuff that I had. The idea was to use this as a "Hello World" to get to learn and understand Android. I tried to follow the Holo theme, the prevailing UI standard at the time, as much as possible.</p>
+<p>After a hiatus, I decided to get back to Android programming by converting the app's UI to Material design. The first step was to add the famous and ubiquitous <a href="https://www.google.com/design/spec/components/buttons-floating-action-button.html" target="_blank">FAB </a>button. The key objective of the FAB button is to promote the single most important action that the app performs. In the case of Thingse, it is to add stuff, so the button would call an add screen.</p>
+<p>I looked at the official Android Support library but that seemed to involve too much work. <a href="https://github.com/makovkastar/FloatingActionButton" target="_blank">Makovkastar's (Oleksandr Melnykov) Floating Action Button library </a>was simple and easy to use. It is customizable and has many options to handle actions.</p>
+<p>To use the library, following are the three main steps:</p>
+<ul>
+<li>Add the following dependency com.melnykov:floatingactionbutton:1.3.0 to the module's build.gradle file (not the application's build.gradle)</li>
+</ul>
+<pre>dependencies {
+
+    compile "com.melnykov:floatingactionbutton:1.3.0"
+
+}</pre>
+<ul>
+<li>Add the FAB's tag to the layout XML</li>
+</ul>
+<pre>&lt;com.melnykov.fab.FloatingActionButton
+    android:id="@+id/fab"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|right"
+    android:layout_alignParentBottom="true"
+    android:layout_margin="16dp"
+    android:src="@drawable/ic_action_content_new"
+    fab:fab_colorNormal="@color/primary"
+    fab:fab_colorPressed="@color/primary_pressed"
+    fab:fab_colorRipple="@color/ripple" /&gt;</pre>
+<ul>
+<li>Instantiate the FAB in the Java code and attach it to a ListView (or other views recommended by the FAB library)</li>
+</ul>
+<pre>//fab code
+FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+fab.attachToListView(thingsList);
+
+fab.setOnClickListener(new View.OnClickListener() {
+   @Override
+   public void onClick(View v) {
+      //Write here anything that you wish to do on click of FAB
+
+      // Code to Add an item
+      Log.i("ThingseActivity", "FAB clicked");
+      startActivity(new Intent(ThingseActivity.this, AddSomething.class));
+
+      //Ends Here
+   }
+});</pre>
+<p>Having done the above steps, you will get a FAB as shown in the screenshots below.</p>
+<p>The earlier main screen of the app looked like this:</p>
+<p><a href="https://plebin.files.wordpress.com/2015/07/main-before.png"><img class="alignnone size-medium wp-image-15" src="{{ site.baseurl }}/assets/main-before.png?w=180" alt="Main-before" width="180" height="300" /></a></p>
+<p>After adding the FAB button, the screen now looks like this:</p>
+<p><img class="alignnone size-medium wp-image-47" src="{{ site.baseurl }}/assets/main-after.png?w=180" alt="Main-after" width="180" height="300" /></p>
+<p>There are some layout issues that remain on the landscape mode. The empty view on the list pushes the FAB out of the screen. But on the portrait mode, it works flawlessly.</p>
